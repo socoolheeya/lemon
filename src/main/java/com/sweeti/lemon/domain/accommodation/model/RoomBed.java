@@ -1,8 +1,10 @@
 package com.sweeti.lemon.domain.accommodation.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -70,6 +72,6 @@ public class RoomBed {
     @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
     private String updatedBy;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Room room;
 }

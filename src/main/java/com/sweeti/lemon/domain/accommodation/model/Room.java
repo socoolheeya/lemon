@@ -4,6 +4,8 @@ package com.sweeti.lemon.domain.accommodation.model;
 import com.sweeti.lemon.common.constant.RoomView;
 import com.sweeti.lemon.common.util.BooleanToYnConverter;
 import com.sweeti.lemon.domain.accommodation.model.dto.RoomDto;
+import com.sweeti.lemon.domain.packages.model.PackageInfo;
+import com.sweeti.lemon.domain.packages.model.PackageRoom;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -81,6 +83,9 @@ public class Room {
 
     @OneToMany(mappedBy = "room")
     private List<RoomBed> roomBeds = new ArrayList<>();
+
+    @OneToMany(mappedBy = "room")
+    private List<PackageRoom> packageRooms = new ArrayList<>();
 
     public static Room ofRoom(RoomDto roomDto) {
         return Room.builder()

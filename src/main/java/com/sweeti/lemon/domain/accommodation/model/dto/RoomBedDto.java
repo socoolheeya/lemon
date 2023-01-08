@@ -1,14 +1,9 @@
 package com.sweeti.lemon.domain.accommodation.model.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
 public class RoomBedDto {
 
     private int singleBed;

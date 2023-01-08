@@ -2,32 +2,17 @@ package com.sweeti.lemon.domain.accommodation.model.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 import com.sweeti.lemon.domain.accommodation.model.Room;
-import com.sweeti.lemon.domain.common.model.Address;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.OneToMany;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.Data;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
 public class AccommodationDto {
-
-
-    private BigInteger id;
+    private BigInteger accommodationId;
 
     private String name;
 
@@ -49,20 +34,12 @@ public class AccommodationDto {
     //@Embedded
     //private Address address;
     private String address;
-    @CreatedDate
-    private ZonedDateTime createdAt;
-    @CreatedBy
-    private String createdBy;
-    @LastModifiedDate
-    private ZonedDateTime updatedAt;
-    @LastModifiedBy
-    private String updatedBy;
     @OneToMany(mappedBy = "Accommodation")
     private List<Room> rooms;
 
     @QueryProjection
-    public AccommodationDto(BigInteger id, String name, String rating, String chainName, String brandName, int roomCount, int floorCount, int basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
-        this.id = id;
+    public AccommodationDto(BigInteger accommodationId, String name, String rating, String chainName, String brandName, int roomCount, int floorCount, int basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
+        this.accommodationId = accommodationId;
         this.name = name;
         this.rating = rating;
         this.chainName = chainName;

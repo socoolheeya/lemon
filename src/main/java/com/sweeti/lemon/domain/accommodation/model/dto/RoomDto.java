@@ -4,19 +4,12 @@ package com.sweeti.lemon.domain.accommodation.model.dto;
 import com.sweeti.lemon.common.constant.RoomView;
 import com.sweeti.lemon.domain.accommodation.model.RoomBed;
 import jakarta.persistence.OneToMany;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
 import java.math.BigInteger;
 import java.util.List;
 
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
 public class RoomDto {
 
     private BigInteger id;
