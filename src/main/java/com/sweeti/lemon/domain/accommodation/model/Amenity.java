@@ -29,6 +29,7 @@ public class Amenity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "amenity_id", columnDefinition = "bigint comment '편의시설ID'")
     private BigInteger id;
     @Column(name = "name", columnDefinition = "varchar(500) comment '편의시설명'")
     private String name;

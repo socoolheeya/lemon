@@ -28,9 +28,9 @@ import java.time.ZonedDateTime;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id", columnDefinition = "도시ID")
+    @Column(name = "city_id", columnDefinition = "bigint comment '도시ID'")
     private BigInteger id;
-    @Column(name = "name", columnDefinition = "도시명")
+    @Column(name = "name", columnDefinition = "varchar(1000) comment '도시명'")
     private String name;
     @CreatedDate
     @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")

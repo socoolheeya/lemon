@@ -23,6 +23,8 @@ spring:
     url: jdbc:mariadb://localhost:3306/lemon
     username: lemon-api
     password: 1234
+  jooq:
+    sql-dialect: mariadb
   devtools:
     livereload:
       enabled: true

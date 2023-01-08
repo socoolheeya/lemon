@@ -15,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,6 +33,7 @@ public class PackageOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "package_option_id", columnDefinition = "bigint comment '패키지옵션ID'")
     private BigInteger id;
+
     @OneToMany(mappedBy = "packageOption")
     private List<PackageOptionMeal> packageOptionMeals = new ArrayList<>();
 

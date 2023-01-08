@@ -39,17 +39,17 @@ public class Accommodation {
     private BigInteger id;
     @Column(name = "bane", columnDefinition = "varchar(500) not null comment '시설명'")
     private String name;
-    @Column(name = "rating", columnDefinition = "smallint(3,2) comment '별점점수'")
+    @Column(name = "rating", columnDefinition = "double(3,2) unsigned comment '별점점수'")
     private BigDecimal rating;
     @Column(name = "chain_name", columnDefinition = "varchar(500) comment '체인명'")
     private String chainName;
     @Column(name = "brand_name", columnDefinition = "varchar(500) comment '브랜드명'")
     private String brandName;
-    @Column(name = "room_count", columnDefinition = "int comment '방 수'")
+    @Column(name = "room_count", columnDefinition = "int unsigned comment '방 수'")
     private int roomCount;
-    @Column(name = "floor_count", columnDefinition = "int comment '층 수'")
+    @Column(name = "floor_count", columnDefinition = "int unsigned comment '층 수'")
     private int floorCount;
-    @Column(name = "basement_count", columnDefinition = "int comment '지하층 수'")
+    @Column(name = "basement_count", columnDefinition = "int unsigned comment '지하층 수'")
     private int basementCount;
     @Column(name = "check_in", columnDefinition = "datetime comment '체크인'")
     private ZonedDateTime checkIn;
@@ -73,6 +73,4 @@ public class Accommodation {
     @LastModifiedBy
     @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
     private String updatedBy;
-    @OneToMany(mappedBy = "Accommodation")
-    private List<Room> rooms = new ArrayList<>();
 }

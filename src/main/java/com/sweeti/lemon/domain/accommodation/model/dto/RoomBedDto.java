@@ -1,6 +1,5 @@
 package com.sweeti.lemon.domain.accommodation.model.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 
 @Data
@@ -18,7 +17,7 @@ public class RoomBedDto {
     private int bunkBed;
     private int ondol;
 
-    @QueryProjection
+
     public RoomBedDto(int singleBed, int doubleBed, int doubleSofaBed, int twinBed, int queenBed, int queenMurphyBed, int largeTwinBed, int kingBed, int futons, int bunkBed, int ondol) {
         this.singleBed = singleBed;
         this.doubleBed = doubleBed;

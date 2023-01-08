@@ -59,6 +59,7 @@ public class PackageInfo {
     private BigDecimal discountCost;
     @Column(name = "total_cost", columnDefinition = "decimal(20,5) comment '총 요금'")
     private BigDecimal totalCost;
+    @Builder.Default
     @OneToMany(mappedBy = "packageInfo")
     private List<PackageRoom> packageRooms = new ArrayList<>();
     @OneToOne(fetch = FetchType.LAZY)

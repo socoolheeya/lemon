@@ -35,7 +35,7 @@ public class RoomBed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_bed_id")
+    @Column(name = "room_bed_id", columnDefinition = "bigint comment '룸배드ID'")
     private BigInteger id;
     @Column(name = "single_bed", columnDefinition = "tinyint(2) unsigned comment '싱글배드 수'")
     private int singleBed;

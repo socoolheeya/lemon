@@ -41,7 +41,7 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
+    @Column(name = "room_id", columnDefinition = "bigint comment 'Room ID'")
     private BigInteger id;
     @Column(name = "name", columnDefinition = "varchar(500) comment '방 이름'")
     private String name;
@@ -80,10 +80,10 @@ public class Room {
     @LastModifiedBy
     @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
     private String updatedBy;
-
+    @Builder.Default
     @OneToMany(mappedBy = "room")
     private List<RoomBed> roomBeds = new ArrayList<>();
-
+    @Builder.Default
     @OneToMany(mappedBy = "room")
     private List<PackageRoom> packageRooms = new ArrayList<>();
 

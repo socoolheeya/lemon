@@ -25,8 +25,6 @@ public class RoomDto {
     private int minOccupancy;
     private Boolean isSmoking;
     private RoomView roomView;
-    @OneToMany
-    private List<RoomBed> roomBeds;
 
 
 

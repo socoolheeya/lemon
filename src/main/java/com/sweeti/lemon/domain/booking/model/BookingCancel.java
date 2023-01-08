@@ -34,6 +34,7 @@ public class BookingCancel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_cancel_id", columnDefinition = "bigint comment '예약취소ID'")
     private BigInteger id;
     @CreatedDate
     @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")

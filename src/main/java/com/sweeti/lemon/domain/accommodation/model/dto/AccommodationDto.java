@@ -1,6 +1,5 @@
 package com.sweeti.lemon.domain.accommodation.model.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
 import com.sweeti.lemon.domain.accommodation.model.Room;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -37,7 +36,7 @@ public class AccommodationDto {
     @OneToMany(mappedBy = "Accommodation")
     private List<Room> rooms;
 
-    @QueryProjection
+
     public AccommodationDto(BigInteger accommodationId, String name, String rating, String chainName, String brandName, int roomCount, int floorCount, int basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
         this.accommodationId = accommodationId;
         this.name = name;
