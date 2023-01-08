@@ -19,8 +19,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,28 +35,32 @@ public class Accommodation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "accommodation_id", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "accommodation_id", columnDefinition = "bigint comment '시설ID'")
     private BigInteger id;
-    @Column(name = "bane", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "bane", columnDefinition = "varchar(500) not null comment '시설명'")
     private String name;
-    @Column(name = "rating", columnDefinition = "bigint not null comment 'room id'")
-    private String rating;
-    @Column(name = "chain_name", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "rating", columnDefinition = "smallint(3,2) comment '별점점수'")
+    private BigDecimal rating;
+    @Column(name = "chain_name", columnDefinition = "varchar(500) comment '체인명'")
     private String chainName;
-    @Column(name = "brand_name", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "brand_name", columnDefinition = "varchar(500) comment '브랜드명'")
     private String brandName;
-    @Column(name = "room_count", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "room_count", columnDefinition = "int comment '방 수'")
     private int roomCount;
-    @Column(name = "floor_count", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "floor_count", columnDefinition = "int comment '층 수'")
     private int floorCount;
-    @Column(name = "basement_count", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "basement_count", columnDefinition = "int comment '지하층 수'")
     private int basementCount;
-    @Column(name = "check_in", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "check_in", columnDefinition = "datetime comment '체크인'")
     private ZonedDateTime checkIn;
-    @Column(name = "check_out", columnDefinition = "bigint not null comment 'room id'")
+    @Column(name = "check_out", columnDefinition = "datetime comment '체크아웃'")
     private ZonedDateTime checkOut;
-    @Embedded
-    private Address address;
+//    @Embedded
+//    private Address address;
+    @Column(name = "address", columnDefinition = "varchar(1000) comment '주소'")
+    private String address;
+    @Column(name = "contact", columnDefinition = "varchar(50) comment '연락처'")
+    private String contact;
     @CreatedDate
     @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
     private ZonedDateTime createdAt;
@@ -68,5 +74,5 @@ public class Accommodation {
     @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
     private String updatedBy;
     @OneToMany(mappedBy = "Accommodation")
-    private List<Room> rooms;
+    private List<Room> rooms = new ArrayList<>();
 }

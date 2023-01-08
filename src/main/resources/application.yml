@@ -1,19 +1,41 @@
 server:
   port: 9090
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
 spring:
   config:
     activate:
       on-profile: local
   jpa:
-    generate-ddl: true
+    database: mysql
+    show-sql: true
     hibernate:
       ddl-auto: create-drop
-    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+#        dialect: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect
   datasource:
-    hikari:
-      driver-class-name: org.mariadb.jdbc.Driver
-      username: lemon-api
-      password: 1234
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/lemon
+    username: lemon-api
+    password: 1234
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      quiet-period: 600ms
+decorator.datasource.p6spy.enable-logging: true
+logging:
+  level:
+    root: INFO
+    com.sweeti.lemon.domain: INFO
+    org.hibernate:
+      type.descriptor.sql: WARN
+      sql: WARN
 ---
 spring:
   profiles:

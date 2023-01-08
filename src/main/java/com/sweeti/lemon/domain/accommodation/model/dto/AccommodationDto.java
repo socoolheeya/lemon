@@ -1,15 +1,10 @@
 package com.sweeti.lemon.domain.accommodation.model.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import com.sweeti.lemon.domain.accommodation.model.Room;
 import com.sweeti.lemon.domain.common.model.Address;
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +21,9 @@ import java.util.List;
 
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AccommodationDto {
 
 
@@ -51,8 +46,9 @@ public class AccommodationDto {
     private ZonedDateTime checkIn;
 
     private ZonedDateTime checkOut;
-    @Embedded
-    private Address address;
+    //@Embedded
+    //private Address address;
+    private String address;
     @CreatedDate
     private ZonedDateTime createdAt;
     @CreatedBy
@@ -64,8 +60,9 @@ public class AccommodationDto {
     @OneToMany(mappedBy = "Accommodation")
     private List<Room> rooms;
 
-    @Builder
-    public AccommodationDto(String name, String rating, String chainName, String brandName, int roomCount, int floorCount, int basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, Address address) {
+    @QueryProjection
+    public AccommodationDto(BigInteger id, String name, String rating, String chainName, String brandName, int roomCount, int floorCount, int basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
+        this.id = id;
         this.name = name;
         this.rating = rating;
         this.chainName = chainName;

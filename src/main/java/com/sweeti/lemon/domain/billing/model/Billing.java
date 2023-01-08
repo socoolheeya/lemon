@@ -21,9 +21,9 @@ import java.math.BigInteger;
 import java.time.ZonedDateTime;
 
 @Getter
+@Builder
 @Entity
 @Table(name = "billing")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Billing {
@@ -36,23 +36,23 @@ public class Billing {
     private BigInteger accommodationId;
     @Column(name = "accommodation_name", columnDefinition = "varchar(500) comment '숙박시설명'")
     private String accommodationName;
-    @Column(name = "billing_cost", columnDefinition = "comment '정산금액'")
+    @Column(name = "billing_cost", columnDefinition = "decimal(20,5) comment '정산금액'")
     private BigDecimal billingCost;
-    @Column(name = "billing_due_date", columnDefinition = "comment '정산예정일'")
+    @Column(name = "billing_due_date", columnDefinition = "datetime comment '정산예정일'")
     private ZonedDateTime billingDueDate;
-    @Column(name = "selling_cost", columnDefinition = "comment '판매금액'")
+    @Column(name = "selling_cost", columnDefinition = "decimal(20,5) comment '판매금액'")
     private BigDecimal sellingCost;
-    @Column(name = "fee", columnDefinition = "comment '수수료'")
+    @Column(name = "fee", columnDefinition = "decimal(20,5) comment '수수료'")
     private BigDecimal fee;
-    @Column(name = "discount_cost", columnDefinition = "comment '할인금액'")
+    @Column(name = "discount_cost", columnDefinition = "decimal(20,5) comment '할인금액'")
     private BigDecimal discountCost;
-    @Column(name = "additional_cost", columnDefinition = "comment '추가금액'")
+    @Column(name = "additional_cost", columnDefinition = "decimal(20,5) comment '추가금액'")
     private BigDecimal additionalCost;
-    @Column(name = "cancel_fee", columnDefinition = "comment '취소 수수료'")
+    @Column(name = "cancel_fee", columnDefinition = "decimal(20,5) comment '취소 수수료'")
     private BigDecimal cancelFee;
-    @Column(name = "billing_additional_cost", columnDefinition = "comment '정산 추가금액'")
+    @Column(name = "billing_additional_cost", columnDefinition = "decimal(20,5) comment '정산 추가금액'")
     private BigDecimal billingAdditionalCost;
-    @Column(name = "billing_deduction_cost", columnDefinition = "comment '정산 차감금액'")
+    @Column(name = "billing_deduction_cost", columnDefinition = "decimal(20,5) comment '정산 차감금액'")
     private BigDecimal billingDeductionCost;
     @CreatedDate
     @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")

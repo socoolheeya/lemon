@@ -30,9 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Builder
 @Entity
 @Table(name = "room")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Room {

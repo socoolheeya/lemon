@@ -3,7 +3,7 @@ package com.sweeti.lemon.domain.common.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
-import org.locationtech.jts.geom.Point;
+//import org.locationtech.jts.geom.Point;
 
 @Getter
 @Embeddable
@@ -18,7 +18,7 @@ public class Address {
     private String stateCode;
     @Column(name = "city_code", columnDefinition = "varchar(100) comment '도시 코드'")
     private String cityCode;
-    @Column(name = "location", columnDefinition = "point comment '좌표 정보'")
-    private Point location;
+//    @Column(name = "location", columnDefinition = "point comment '좌표 정보'")
+//    private Point location;
 
 }

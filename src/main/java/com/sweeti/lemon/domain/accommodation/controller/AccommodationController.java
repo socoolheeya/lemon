@@ -21,8 +21,8 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1.0/api", consumes = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
+@RequestMapping(value = "/v1.0/api", consumes = MediaType.APPLICATION_JSON_VALUE)
 public class AccommodationController {
 
     private final AccommodationService accommodationService;

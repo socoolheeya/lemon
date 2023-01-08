@@ -1,9 +1,3 @@
-buildscript {
-	ext {
-		queryDslVersion = "5.0.0"
-	}
-}
-
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.1'
@@ -25,9 +19,14 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set("queryDslVersion", "5.0.0")
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
@@ -37,23 +36,36 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-	implementation 'org.hibernate.orm:hibernate-spatial:6.2.0.CR1'
+	//implementation 'org.hibernate.orm:hibernate-spatial:6.2.0.CR1'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:4.11.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
 }
 
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+processResources {
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
 	jpa = true
 	querydslSourcesDir = querydslDir
 }
-ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
 sourceSets {
 	main {
+		java {
+			srcDirs("src/main/java")
+		}
 		resources {
-			srcDirs("src/main/resources-$profile")
+			srcDirs("src/main/resources")
 		}
 	}
 	main.java.srcDir querydslDir
@@ -61,16 +73,9 @@ sourceSets {
 compileQuerydsl{
 	options.annotationProcessorPath = configurations.querydsl
 }
-clean {
-	delete file('src/main/generated') // 인텔리제이 Annotation processor 생성물 생성위치
-}
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 	querydsl.extendsFrom compileClasspath
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }
