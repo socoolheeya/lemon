@@ -1,6 +1,7 @@
 package com.sweeti.lemon.domain.accommodation.repository;
 
 
+import com.sweeti.lemon.domain.accommodation.model.Accommodation;
 import com.sweeti.lemon.domain.accommodation.model.dto.AccommodationDto;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
@@ -13,6 +14,8 @@ import java.math.BigInteger;
 public class QAccommodationRepository {
 
     private final DSLContext dslContext;
+
+
 
 //    public AccommodationDto getAccommodation(BigInteger id) {
 //        return dslContext.select()

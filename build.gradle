@@ -1,7 +1,19 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.jooq:jooq-codegen:3.17.6'
+		classpath 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.1'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'nu.studer.jooq' version '8.1'
 }
 
 group = 'com.sweeti'
@@ -15,6 +27,7 @@ configurations {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -23,9 +36,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-jooq'
+	implementation 'org.jooq:jooq-codegen:3.17.6'
+	implementation 'org.jooq:jooq-meta:3.17.6'
+
+//	jooqGenerator 'org.mariadb.jdbc:mariadb-java-client'
+//	jooqGenerator 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+
+
 	//implementation 'org.hibernate.orm:hibernate-spatial:6.2.0.CR1'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -34,4 +56,55 @@ dependencies {
 	testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
 }
 
+
+import nu.studer.gradle.jooq.JooqEdition
+import org.jooq.meta.jaxb.Logging
+import org.jooq.meta.*
+import org.jooq.codegen.*
+
+jooq {
+	version = '3.17.6'  // default (can be omitted)
+	edition = JooqEdition.OSS  // default (can be omitted)
+
+	configurations {
+		main {  // name of the jOOQ configuration
+			//generateSchemaSourceOnCompilation = true  // default (can be omitted)
+
+			generationTool {
+//				logging = Logging.WARN
+				jdbc {
+					driver = 'com.mariadb.jdbc.Driver'
+					url = 'jdbc:mariadb://localhost:3306/lemon'
+					username = 'lemon-api'
+					password = '1234'
+//					properties {
+//						property {
+//							key = 'ssl'
+//							value = 'false'
+//						}
+//					}
+				}
+				generator {
+					name = 'org.jooq.codegen.JavaGenerator'
+					database {
+						name = 'org.jooq.meta.mariadb.MariaDBDatabase'
+						inputSchema = 'lemon'
+						includes = '.*'
+					}
+					generate {
+						deprecated = false
+						records = true
+						immutablePojos = true
+						fluentSetters = true
+					}
+					target {
+						packageName = 'com.sweeti.lemon'
+						directory = 'build/generated-src/jooq/main'  // default (can be omitted)
+					}
+					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+				}
+			}
+		}
+	}
+}
 
