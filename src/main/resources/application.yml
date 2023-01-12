@@ -11,12 +11,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        show_sql: true
-#        dialect: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect
+      ddl-auto: update
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/lemon

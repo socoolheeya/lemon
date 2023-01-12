@@ -1,62 +1,26 @@
 package com.sweeti.lemon.domain.accommodation.repository;
 
-
-import com.sweeti.lemon.domain.accommodation.model.dto.AccommodationDto;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.sweeti.lemon.domain.accommodation.model.Accommodation;
+import static com.sweeti.lemon.domain.accommodation.model.QAccommodation.*;
 import lombok.RequiredArgsConstructor;
-import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
-
-import static com.sweeti.lemon.lemon.tables.Accommodation.ACCOMMODATION;
 
 @Repository
 @RequiredArgsConstructor
 public class QAccommodationRepository {
 
-    private final DSLContext dslContext;
+    private final JPAQueryFactory factory;
 
-    public AccommodationDto getAccommodation(BigInteger id) {
-        return dslContext
-                .select(
-                        ACCOMMODATION.ACCOMMODATION_ID
-                        , ACCOMMODATION.NAME
-                        , ACCOMMODATION.RATING
-                        , ACCOMMODATION.CHAIN_NAME
-                        , ACCOMMODATION.BRAND_NAME
-                        , ACCOMMODATION.ROOM_COUNT
-                        , ACCOMMODATION.FLOOR_COUNT
-                        , ACCOMMODATION.BASEMENT_COUNT
-                        , ACCOMMODATION.CHECK_IN
-                        , ACCOMMODATION.CHECK_OUT
-                        , ACCOMMODATION.ADDRESS
-                )
-                .from(ACCOMMODATION)
-                .where(ACCOMMODATION.ACCOMMODATION_ID.eq(id.longValue()))
-                .fetchInto(AccommodationDto.class)
+    public Accommodation getAccommodation(BigInteger id) {
+        return factory.selectFrom(accommodation)
+                .where(accommodation.id.eq(id))
+                .fetch()
                 .stream().findFirst()
-                .orElse(new AccommodationDto());
+                .orElse(Accommodation.builder().build());
     }
 
-    public void insertAccommodation(AccommodationDto accommodationDto) {
-        dslContext.insertInto(ACCOMMODATION
-                        , ACCOMMODATION.NAME
-                        , ACCOMMODATION.RATING
-                        , ACCOMMODATION.CHAIN_NAME
-                        , ACCOMMODATION.BRAND_NAME
-                        , ACCOMMODATION.ROOM_COUNT
-                        , ACCOMMODATION.CHECK_IN
-                        , ACCOMMODATION.CHECK_OUT
-                )
-                .values(
-                        accommodationDto.getName()
-                        , accommodationDto.getRating()
-                        , accommodationDto.getChainName()
-                        , accommodationDto.getBrandName()
-                        , accommodationDto.getRoomCount()
-                        , accommodationDto.getCheckIn()
-                        , accommodationDto.getCheckOut()
-                )
-                .execute();
-    }
+
 }

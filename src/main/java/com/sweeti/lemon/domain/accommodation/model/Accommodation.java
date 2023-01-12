@@ -1,13 +1,10 @@
 package com.sweeti.lemon.domain.accommodation.model;
 
-import com.sweeti.lemon.domain.common.model.Address;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,8 +19,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "accommodation")
@@ -46,11 +41,11 @@ public class Accommodation {
     @Column(name = "brand_name", columnDefinition = "varchar(500) comment '브랜드명'")
     private String brandName;
     @Column(name = "room_count", columnDefinition = "int unsigned comment '방 수'")
-    private int roomCount;
+    private Integer roomCount;
     @Column(name = "floor_count", columnDefinition = "int unsigned comment '층 수'")
-    private int floorCount;
+    private Integer floorCount;
     @Column(name = "basement_count", columnDefinition = "int unsigned comment '지하층 수'")
-    private int basementCount;
+    private Integer basementCount;
     @Column(name = "check_in", columnDefinition = "datetime comment '체크인'")
     private ZonedDateTime checkIn;
     @Column(name = "check_out", columnDefinition = "datetime comment '체크아웃'")

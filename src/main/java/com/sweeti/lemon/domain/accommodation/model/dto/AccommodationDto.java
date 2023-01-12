@@ -4,7 +4,6 @@ import com.sweeti.lemon.domain.accommodation.model.Room;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jooq.types.UInteger;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
@@ -24,11 +23,11 @@ public class AccommodationDto {
 
     private String brandName;
 
-    private UInteger roomCount;
+    private Integer roomCount;
 
-    private UInteger floorCount;
+    private Integer floorCount;
 
-    private UInteger basementCount;
+    private Integer basementCount;
 
     private ZonedDateTime checkIn;
 
@@ -40,7 +39,7 @@ public class AccommodationDto {
     private List<Room> rooms;
 
 
-    public AccommodationDto(BigInteger accommodationId, String name, Double rating, String chainName, String brandName, UInteger roomCount, UInteger floorCount, UInteger basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
+    public AccommodationDto(BigInteger accommodationId, String name, Double rating, String chainName, String brandName, Integer roomCount, Integer floorCount, Integer basementCount, ZonedDateTime checkIn, ZonedDateTime checkOut, String address) {
         this.accommodationId = accommodationId;
         this.name = name;
         this.rating = rating;

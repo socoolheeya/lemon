@@ -38,27 +38,27 @@ public class RoomBed {
     @Column(name = "room_bed_id", columnDefinition = "bigint comment '룸배드ID'")
     private BigInteger id;
     @Column(name = "single_bed", columnDefinition = "tinyint(2) unsigned comment '싱글배드 수'")
-    private int singleBed;
+    private Integer singleBed;
     @Column(name = "double_bed", columnDefinition = "tinyint(2) unsigned comment '싱글배드 수'")
-    private int doubleBed;
+    private Integer doubleBed;
     @Column(name = "double_sofa_bed", columnDefinition = "tinyint(2) unsigned comment '더블소파배드 수'")
-    private int doubleSofaBed;
+    private Integer doubleSofaBed;
     @Column(name = "twin_bed", columnDefinition = "tinyint(2) unsigned comment '트윈배드 수'")
-    private int twinBed;
+    private Integer twinBed;
     @Column(name = "queen_bed", columnDefinition = "tinyint(2) unsigned comment '퀸배드 수'")
-    private int queenBed;
+    private Integer queenBed;
     @Column(name = "queen_murphy_bed", columnDefinition = "tinyint(2) unsigned comment '퀸머피배드 수'")
-    private int queenMurphyBed;
+    private Integer queenMurphyBed;
     @Column(name = "large_twin_bed", columnDefinition = "tinyint(2) unsigned comment '라지 트윈 배드 수'")
-    private int largeTwinBed;
+    private Integer largeTwinBed;
     @Column(name = "king_bed", columnDefinition = "tinyint(2) unsigned comment '킹배드 수'")
-    private int kingBed;
+    private Integer kingBed;
     @Column(name = "futons", columnDefinition = "tinyint(2) unsigned comment '매트리스'")
-    private int futons;
+    private Integer futons;
     @Column(name = "bunk_bed", columnDefinition = "tinyint(2) unsigned comment '벙커배드 수'")
-    private int bunkBed;
+    private Integer bunkBed;
     @Column(name = "ondol", columnDefinition = "tinyint(2) unsigned comment '온돌'")
-    private int ondol;
+    private Integer ondol;
     @CreatedDate
     @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
     private ZonedDateTime createdAt;

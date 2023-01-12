@@ -49,19 +49,19 @@ public class Room {
     @Column(name = "use_yn", columnDefinition = "char(1) comment '사용여부'")
     private Boolean useYn;
     @Column(name = "room_count", columnDefinition = "tinyint(2) unsigned comment '방 갯수'")
-    private int roomCount;
+    private Integer roomCount;
     @Column(name = "living_count", columnDefinition = "tinyint(2) unsigned comment '거실 수'")
-    private int livingCount;
+    private Integer livingCount;
     @Column(name = "bathroom_count", columnDefinition = "tinyint(2) unsigned comment '욕실 수'")
-    private int bathroomCount;
+    private Integer bathroomCount;
     @Column(name = "adult_count", columnDefinition = "tinyint(3) unsigned comment '어른 인원 수'")
-    private int adultCount;
+    private Integer adultCount;
     @Column(name = "children_count", columnDefinition = "tinyint(3) unsigned comment '어린이 인원 수'")
-    private int childrenCount;
+    private Integer childrenCount;
     @Column(name = "max_occupancy", columnDefinition = "tinyint(3) unsigned comment '최대 인원'")
-    private int maxOccupancy;
+    private Integer maxOccupancy;
     @Column(name = "min_occupancy", columnDefinition = "tinyint(3) unsigned comment '최소 인원'")
-    private int minOccupancy;
+    private Integer minOccupancy;
     @Convert(converter = BooleanToYnConverter.class)
     @Column(name = "is_smoking", columnDefinition = "char(1) comment '흡연 여부'")
     private Boolean isSmoking;
