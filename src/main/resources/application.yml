@@ -9,7 +9,6 @@ spring:
     activate:
       on-profile: local
   jpa:
-    database: mysql
     show-sql: true
     hibernate:
       ddl-auto: create-drop

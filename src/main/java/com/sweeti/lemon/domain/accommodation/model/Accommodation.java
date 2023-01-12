@@ -37,7 +37,7 @@ public class Accommodation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "accommodation_id", columnDefinition = "bigint comment '시설ID'")
     private BigInteger id;
-    @Column(name = "bane", columnDefinition = "varchar(500) not null comment '시설명'")
+    @Column(name = "name", columnDefinition = "varchar(500) not null comment '시설명'")
     private String name;
     @Column(name = "rating", columnDefinition = "double(3,2) unsigned comment '별점점수'")
     private BigDecimal rating;
