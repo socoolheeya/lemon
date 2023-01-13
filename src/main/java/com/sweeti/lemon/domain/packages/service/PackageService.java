@@ -4,12 +4,14 @@ import com.sweeti.lemon.domain.packages.model.PackageInfo;
 import com.sweeti.lemon.domain.packages.repository.PackageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PackageService {
 
     private final PackageRepository packageRepository;
@@ -22,10 +24,12 @@ public class PackageService {
         return packageRepository.findById(id).orElseThrow();
     }
 
+    @Transactional
     public PackageInfo savePackage(PackageInfo packageInfo) {
         return packageRepository.save(packageInfo);
     }
 
+    @Transactional
     public void deletePackage(BigInteger id) {
         packageRepository.deleteById(id);
     }
