@@ -1,10 +1,18 @@
 package com.sweeti.lemon.domain.billing.model;
 
+import com.sweeti.lemon.domain.accommodation.model.Accommodation;
+import com.sweeti.lemon.domain.billing.model.http.BillingRequest;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,16 +34,12 @@ import java.time.ZonedDateTime;
 @Table(name = "billing")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Billing {
+public class Billing extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "billing_id", columnDefinition = "bigint not null comment '정산ID'")
     private BigInteger id;
-    @Column(name = "acommodation_id", columnDefinition = "bigint not null comment '숙박시설ID'")
-    private BigInteger accommodationId;
-    @Column(name = "accommodation_name", columnDefinition = "varchar(500) comment '숙박시설명'")
-    private String accommodationName;
     @Column(name = "billing_cost", columnDefinition = "decimal(20,5) comment '정산금액'")
     private BigDecimal billingCost;
     @Column(name = "billing_due_date", columnDefinition = "datetime comment '정산예정일'")
@@ -54,18 +58,25 @@ public class Billing {
     private BigDecimal billingAdditionalCost;
     @Column(name = "billing_deduction_cost", columnDefinition = "decimal(20,5) comment '정산 차감금액'")
     private BigDecimal billingDeductionCost;
-    @CreatedDate
-    @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
-    private ZonedDateTime createdAt;
-    @CreatedBy
-    @Column(name = "careted_by", columnDefinition = "varchar(2000) comment '생성자'")
-    private String createdBy;
-    @LastModifiedDate
-    @Column(name = "updated_at", columnDefinition = "datetime comment '수정일'")
-    private ZonedDateTime updatedAt;
-    @LastModifiedBy
-    @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
-    private String updatedBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accommodation_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Accommodation accommodation;
+
+    public static Billing toEntity(BillingRequest request) {
+        return Billing.builder()
+                .id(request.getId())
+                .billingCost(request.getBillingCost())
+                .billingDueDate(request.getBillingDueDate())
+                .sellingCost(request.getSellingCost())
+                .fee(request.getFee())
+                .discountCost(request.getDiscountCost())
+                .additionalCost(request.getAdditionalCost())
+                .cancelFee(request.getCancelFee())
+                .billingAdditionalCost(request.getBillingAdditionalCost())
+                .billingDeductionCost(request.getBillingDeductionCost())
+                .build();
+    }
 
 
 }

@@ -4,7 +4,7 @@ package com.sweeti.lemon.domain.accommodation.model;
 import com.sweeti.lemon.common.constant.RoomView;
 import com.sweeti.lemon.common.util.BooleanToYnConverter;
 import com.sweeti.lemon.domain.accommodation.model.dto.RoomDto;
-import com.sweeti.lemon.domain.packages.model.PackageInfo;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import com.sweeti.lemon.domain.packages.model.PackageRoom;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -21,13 +21,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigInteger;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +32,7 @@ import java.util.List;
 @Table(name = "room")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Room {
+public class Room extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,18 +63,6 @@ public class Room {
     @Enumerated(EnumType.STRING)
     @Column(name = "room_view", columnDefinition = "varchar(100) comment '뷰 종류'")
     private RoomView roomView;
-    @CreatedDate
-    @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
-    private ZonedDateTime createdAt;
-    @CreatedBy
-    @Column(name = "careted_by", columnDefinition = "varchar(2000) comment '생성자'")
-    private String createdBy;
-    @LastModifiedDate
-    @Column(name = "updated_at", columnDefinition = "datetime comment '수정일'")
-    private ZonedDateTime updatedAt;
-    @LastModifiedBy
-    @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
-    private String updatedBy;
     @Builder.Default
     @OneToMany(mappedBy = "room")
     private List<RoomBed> roomBeds = new ArrayList<>();

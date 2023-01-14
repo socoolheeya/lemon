@@ -1,6 +1,7 @@
 package com.sweeti.lemon.domain.packages.model;
 
 import com.sweeti.lemon.common.constant.MealType;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -19,8 +20,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigInteger;
+import java.time.ZonedDateTime;
 
 @Getter
 @Builder
@@ -28,7 +34,7 @@ import java.math.BigInteger;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PackageOptionMeal {
+public class PackageOptionMeal extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

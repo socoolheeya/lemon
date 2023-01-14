@@ -1,6 +1,7 @@
 package com.sweeti.lemon.domain.packages.model;
 
 import com.sweeti.lemon.domain.accommodation.model.Room;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -19,8 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Builder
@@ -28,7 +27,7 @@ import java.util.List;
 @Table(name = "package_room")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PackageRoom {
+public class PackageRoom extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

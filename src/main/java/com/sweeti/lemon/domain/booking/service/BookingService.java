@@ -24,7 +24,8 @@ public class BookingService {
     }
 
     public Booking getBooking(BigInteger id) {
-        return bookingRepository.findById(id).orElseThrow(RuntimeException::new);
+        return bookingRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Transactional

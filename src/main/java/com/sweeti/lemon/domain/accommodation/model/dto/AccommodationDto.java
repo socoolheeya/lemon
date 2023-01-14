@@ -1,6 +1,8 @@
 package com.sweeti.lemon.domain.accommodation.model.dto;
 
 import com.sweeti.lemon.domain.accommodation.model.Room;
+import com.sweeti.lemon.domain.common.model.Address;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,8 +34,8 @@ public class AccommodationDto {
     private ZonedDateTime checkIn;
 
     private ZonedDateTime checkOut;
-    //@Embedded
-    //private Address address;
+//    @Embedded
+//    private Address address;
     private String address;
     @OneToMany(mappedBy = "Accommodation")
     private List<Room> rooms;

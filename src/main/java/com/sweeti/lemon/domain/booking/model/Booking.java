@@ -1,6 +1,7 @@
 package com.sweeti.lemon.domain.booking.model;
 
 import com.sweeti.lemon.common.util.BooleanToYnConverter;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import com.sweeti.lemon.domain.packages.model.PackageInfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -15,10 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
@@ -29,7 +26,7 @@ import java.time.ZonedDateTime;
 @Table(name = "booking")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Booking {
+public class Booking extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id", columnDefinition = "bigint comment '예약ID'")
@@ -47,18 +44,6 @@ public class Booking {
     private ZonedDateTime checkOut;
     @Column(name = "notice", columnDefinition = "varchar(2000) comment '알림사항'")
     private String notice;
-    @CreatedDate
-    @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
-    private ZonedDateTime createdAt;
-    @CreatedBy
-    @Column(name = "careted_by", columnDefinition = "varchar(2000) comment '생성자'")
-    private String createdBy;
-    @LastModifiedDate
-    @Column(name = "updated_at", columnDefinition = "datetime comment '수정일'")
-    private ZonedDateTime updatedAt;
-    @LastModifiedBy
-    @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
-    private String updatedBy;
     @OneToOne(mappedBy = "booking")
     private PackageInfo packageInfo;
 

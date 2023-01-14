@@ -1,6 +1,7 @@
 package com.sweeti.lemon.domain.packages.service;
 
 import com.sweeti.lemon.domain.packages.model.PackageInfo;
+import com.sweeti.lemon.domain.packages.model.http.PackageRequest;
 import com.sweeti.lemon.domain.packages.repository.PackageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,8 @@ public class PackageService {
     }
 
     @Transactional
-    public PackageInfo savePackage(PackageInfo packageInfo) {
-        return packageRepository.save(packageInfo);
+    public PackageInfo savePackage(PackageRequest request) {
+        return packageRepository.save(request.toEntity());
     }
 
     @Transactional

@@ -1,7 +1,11 @@
 package com.sweeti.lemon.domain.accommodation.model;
 
+import com.sweeti.lemon.common.util.BooleanToYnConverter;
+import com.sweeti.lemon.domain.common.model.BaseEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,10 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -26,7 +27,8 @@ import java.time.ZonedDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Accommodation {
+@EntityListeners(AuditingEntityListener.class)
+public class Accommodation extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,16 +58,7 @@ public class Accommodation {
     private String address;
     @Column(name = "contact", columnDefinition = "varchar(50) comment '연락처'")
     private String contact;
-    @CreatedDate
-    @Column(name = "created_at", columnDefinition = "datetime comment '생성일'")
-    private ZonedDateTime createdAt;
-    @CreatedBy
-    @Column(name = "careted_by", columnDefinition = "varchar(2000) comment '생성자'")
-    private String createdBy;
-    @LastModifiedDate
-    @Column(name = "updated_at", columnDefinition = "datetime comment '수정일'")
-    private ZonedDateTime updatedAt;
-    @LastModifiedBy
-    @Column(name = "updated_by", columnDefinition = "varchar(2000) comment '수정자'")
-    private String updatedBy;
+    @Convert(converter = BooleanToYnConverter.class)
+    @Column(name = "use_yn", columnDefinition = "char(1) default 'Y' comment '사용여부'")
+    private Boolean useYn;
 }
